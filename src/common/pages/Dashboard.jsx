@@ -12,14 +12,12 @@ import Paper from '@mui/material/Paper';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import WcIcon from '@mui/icons-material/Wc';
-import ClassIcon from '@mui/icons-material/Class';
-import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import { Copyright } from '../components/Copyright';
 import { AppBar } from '../components/AppBar';
 import { Drawer } from '../components/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { options } from '../helpers/variables';
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
@@ -27,6 +25,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const DashboardContent = () => {
     const [open, setOpen] = useState(true);
+    const [option, setOption] = useState('Profesores');
+
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -59,7 +59,7 @@ const DashboardContent = () => {
                         noWrap
                         sx={{ flexGrow: 1 }}
                     >
-                        Frontend React
+                        Frontend {option}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -78,27 +78,20 @@ const DashboardContent = () => {
                 </Toolbar>
                 <Divider />
                 <List component="nav">
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <WcIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Profesores" />
-                    </ListItemButton>
-                    <Divider sx={{ my: 1 }} />
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <ClassIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Clases" />
-                    </ListItemButton>
-                    <Divider sx={{ my: 1 }} />
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <ImportContactsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Asignaturas" />
-                    </ListItemButton>
-                    <Divider sx={{ my: 1 }} />
+                    {
+                        options.map((op) => <>
+                            <ListItemButton
+                                onClick={() => setOption(op.title)}
+                                selected={op.title === option}
+                            >
+                                <ListItemIcon>
+                                    {op.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={op.title} />
+                            </ListItemButton>
+                            <Divider sx={{ my: 1 }} />
+                        </>)
+                    }
                 </List>
             </Drawer>
             <Box
