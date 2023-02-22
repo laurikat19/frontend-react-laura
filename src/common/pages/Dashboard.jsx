@@ -27,12 +27,14 @@ import { AsignaturasCount } from '../../asignaturas/components/AsignaturasCount'
 import { AsignaturasList } from '../../asignaturas/components/AsignaturasList';
 import AsignaturaForm from '../../asignaturas/components/AsignaturasForm';
 import { useAsignaturas } from '../../asignaturas/hooks/asignaturas';
+import { useProfesores } from '../../profesores/hooks/profesores';
 
 const DashboardContent = () => {
     const [open, setOpen] = useState(true);
     const [option, setOption] = useState('Profesores');
 
     const { asignaturas, handleCreateAsignatura, handleUpdateAsignatura, handleDeleteAsignatura } = useAsignaturas();
+    const { profesores, handleCreateProfesor, handleUpdateProfesor, handleDeleteProfesor } = useProfesores();
 
 
     const toggleDrawer = () => {
@@ -129,7 +131,7 @@ const DashboardContent = () => {
                             >
                                 {
                                     option === 'Profesores' ?
-                                        <ProfesorForm isEditing={false} initialValues={null} />
+                                        <ProfesorForm onSubmit={handleCreateProfesor} isEditing={false} initialValues={null} />
                                         :
                                         option === 'Asignaturas' ?
                                             <AsignaturaForm onSubmit={handleCreateAsignatura} isEditing={false} initialValues={null} />
@@ -151,7 +153,7 @@ const DashboardContent = () => {
                             >
                                 {
                                     option === 'Profesores' ?
-                                        <ProfesoresCount />
+                                        <ProfesoresCount profesores={profesores} />
                                         :
                                         option === 'Asignaturas' ?
                                             <AsignaturasCount asignaturas={asignaturas} />
@@ -165,7 +167,11 @@ const DashboardContent = () => {
                             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                                 {
                                     option === 'Profesores' ?
-                                        <ProfesoresList />
+                                        <ProfesoresList
+                                            profesores={profesores}
+                                            handleUpdateProfesor={handleUpdateProfesor}
+                                            handleDeleteProfesor={handleDeleteProfesor}
+                                        />
                                         :
                                         option === 'Asignaturas' ?
                                             <AsignaturasList

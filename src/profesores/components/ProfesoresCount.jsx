@@ -1,8 +1,6 @@
 import { Typography } from '@mui/material';
-import { useProfesores } from '../hooks/profesores';
 
-export const ProfesoresCount = () => {
-    const { profesores } = useProfesores();
+export const ProfesoresCount = ({ profesores }) => {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%" }}>

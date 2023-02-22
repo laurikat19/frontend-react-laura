@@ -18,8 +18,7 @@ import moment from 'moment';
 import ProfesorForm from './ProfesorForm';
 import { useState } from 'react';
 
-export const ProfesoresList = () => {
-    const { profesores, handleDeleteProfesor } = useProfesores();
+export const ProfesoresList = ({profesores, handleUpdateProfesor, handleDeleteProfesor}) => {
     const [open, setOpen] = useState(false);
     const [profesor, setProfesor] = useState({});
 
@@ -88,7 +87,7 @@ export const ProfesoresList = () => {
                     <DialogContentText>
                         Este formulario para actualizar datos de profesores es una interfaz de usuario que permite a los usuarios modificar y actualizar la información de un profesor existente. Este formulario incluiría campos para editar datos como el nombre, correo electrónico, teléfono, dirección.
                     </DialogContentText> <br />
-                    <ProfesorForm isEditing={true} initialValues={{
+                    <ProfesorForm onSubmit={handleUpdateProfesor} isEditing={true} initialValues={{
                         id: profesor.id,
                         nombre: profesor.nombre,
                         correo: profesor.correo,
