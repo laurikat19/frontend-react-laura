@@ -1,6 +1,6 @@
 import { Button, Grid, TextField } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { createProfesor, updateProfesor } from "../hooks/profesores";
+import { useProfesores } from "../hooks/profesores";
 
 const initialFormState = {
   nombre: "",
@@ -10,6 +10,7 @@ const initialFormState = {
 
 const ProfesorForm = ({ isEditing, initialValues }) => {
   const [formState, setFormState] = useState(initialFormState);
+  const { handleCreateProfesor, handleUpdateProfesor } = useProfesores();
 
   useEffect(() => {
     if (isEditing) {
@@ -25,7 +26,7 @@ const ProfesorForm = ({ isEditing, initialValues }) => {
   };
 
   const create = () => {
-    createProfesor(formState)
+    handleCreateProfesor(formState)
       .then(resp => {
         console.log(resp);
       })
@@ -35,7 +36,7 @@ const ProfesorForm = ({ isEditing, initialValues }) => {
   }
 
   const update = () => {
-    updateProfesor(formState.id, formState)
+    handleUpdateProfesor(formState.id, formState)
       .then(resp => {
         console.log(resp);
       })
