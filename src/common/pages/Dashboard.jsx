@@ -1,27 +1,28 @@
 import { useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import {
+    Box,
+    Container,
+    CssBaseline,
+    Divider,
+    Grid,
+    IconButton,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Paper,
+    Toolbar,
+    Typography
+} from '@mui/material';
 import { Copyright } from '../components/Copyright';
 import { AppBar } from '../components/AppBar';
 import { Drawer } from '../components/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { options } from '../helpers/variables';
-// import { mainListItems, secondaryListItems } from './listItems';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
+import { ProfesoresList } from '../../profesores/components/ProfesoresList';
+import ProfesorForm from '../../profesores/components/ProfesorForm';
+import { ProfesoresCount } from '../../profesores/components/ProfesoresCount';
 
 const DashboardContent = () => {
     const [open, setOpen] = useState(true);
@@ -37,7 +38,7 @@ const DashboardContent = () => {
             <AppBar position="absolute" open={open}>
                 <Toolbar
                     sx={{
-                        pr: '24px', // keep right padding when drawer closed
+                        pr: '24px',
                     }}
                 >
                     <IconButton
@@ -119,7 +120,7 @@ const DashboardContent = () => {
                                     height: 240,
                                 }}
                             >
-                                {/* <Chart /> */}
+                                <ProfesorForm isEditing={false} initialValues={null} />
                             </Paper>
                         </Grid>
 
@@ -132,13 +133,13 @@ const DashboardContent = () => {
                                     height: 240,
                                 }}
                             >
-                                {/* <Deposits /> */}
+                                <ProfesoresCount />
                             </Paper>
                         </Grid>
 
                         <Grid item xs={12}>
                             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                {/* <Orders /> */}
+                                <ProfesoresList />
                             </Paper>
                         </Grid>
                     </Grid>

@@ -4,6 +4,8 @@ import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 
 export const drawerWidth = 240;
 
+export const apiUrl = 'http://127.0.0.1:8000';
+
 export const options = [
     {
         title: 'Profesores',
