@@ -1,9 +1,6 @@
 import { Typography } from '@mui/material';
-import { useAsignaturas } from '../hooks/asignaturas';
 
-export const AsignaturasCount = () => {
-    const { asignaturas } = useAsignaturas();
-
+export const AsignaturasCount = ({asignaturas}) => {
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%" }}>
             <Typography component="p" variant="h1" color="primary">

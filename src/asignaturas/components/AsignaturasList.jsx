@@ -18,8 +18,7 @@ import moment from 'moment';
 import AsignaturaForm from './AsignaturasForm';
 import { useState } from 'react';
 
-export const AsignaturasList = () => {
-    const { asignaturas, handleDeleteAsignatura } = useAsignaturas();
+export const AsignaturasList = ({asignaturas, handleUpdateAsignatura, handleDeleteAsignatura}) => {
     const [open, setOpen] = useState(false);
     const [asignatura, setAsignatura] = useState({});
 
@@ -31,10 +30,6 @@ export const AsignaturasList = () => {
     const handleClose = () => {
         setOpen(false);
     };
-
-    const eliminar = (id) => {
-        handleDeleteAsignatura(id)
-    }
 
     return (
         <>
@@ -67,7 +62,7 @@ export const AsignaturasList = () => {
                                     </Button>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Button size="large" color="error" fullWidth onClick={() => { eliminar(asignatura.id) }}>
+                                    <Button size="large" color="error" fullWidth onClick={() => { handleDeleteAsignatura(asignatura.id) }}>
                                         <DeleteForeverIcon />
                                     </Button>
                                 </Grid>
@@ -82,7 +77,7 @@ export const AsignaturasList = () => {
                     <DialogContentText>
                         Este formulario para actualizar datos de asignaturas es una interfaz de usuario que permite a los usuarios modificar y actualizar la información de un asignatura existente. Este formulario incluiría campos para editar datos como el nombre de la asignatura y el codigo de asignatura.
                     </DialogContentText> <br />
-                    <AsignaturaForm isEditing={true} initialValues={{
+                    <AsignaturaForm onSubmit={handleUpdateAsignatura} isEditing={true} initialValues={{
                         id: asignatura.id,
                         nombre: asignatura.nombre,
                         codigo: asignatura.codigo,

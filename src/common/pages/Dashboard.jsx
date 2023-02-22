@@ -26,10 +26,14 @@ import { ProfesoresCount } from '../../profesores/components/ProfesoresCount';
 import { AsignaturasCount } from '../../asignaturas/components/AsignaturasCount';
 import { AsignaturasList } from '../../asignaturas/components/AsignaturasList';
 import AsignaturaForm from '../../asignaturas/components/AsignaturasForm';
+import { useAsignaturas } from '../../asignaturas/hooks/asignaturas';
 
 const DashboardContent = () => {
     const [open, setOpen] = useState(true);
     const [option, setOption] = useState('Profesores');
+
+    const { asignaturas, handleCreateAsignatura, handleUpdateAsignatura, handleDeleteAsignatura } = useAsignaturas();
+
 
     const toggleDrawer = () => {
         setOpen(!open);
@@ -128,7 +132,7 @@ const DashboardContent = () => {
                                         <ProfesorForm isEditing={false} initialValues={null} />
                                         :
                                         option === 'Asignaturas' ?
-                                            <AsignaturaForm isEditing={false} initialValues={null} />
+                                            <AsignaturaForm onSubmit={handleCreateAsignatura} isEditing={false} initialValues={null} />
                                             :
                                             <ProfesorForm isEditing={false} initialValues={null} />
 
@@ -150,7 +154,7 @@ const DashboardContent = () => {
                                         <ProfesoresCount />
                                         :
                                         option === 'Asignaturas' ?
-                                            <AsignaturasCount />
+                                            <AsignaturasCount asignaturas={asignaturas} />
                                             :
                                             <ProfesoresCount />
                                 }
@@ -164,7 +168,11 @@ const DashboardContent = () => {
                                         <ProfesoresList />
                                         :
                                         option === 'Asignaturas' ?
-                                            <AsignaturasList />
+                                            <AsignaturasList
+                                                asignaturas={asignaturas}
+                                                handleUpdateAsignatura={handleUpdateAsignatura}
+                                                handleDeleteAsignatura={handleDeleteAsignatura}
+                                            />
                                             :
                                             <ProfesoresList />
                                 }

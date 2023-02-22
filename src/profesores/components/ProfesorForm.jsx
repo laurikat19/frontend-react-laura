@@ -8,9 +8,8 @@ const initialFormState = {
   telefono: "",
 };
 
-const ProfesorForm = ({ isEditing, initialValues }) => {
+const ProfesorForm = ({ onSubmit, isEditing, initialValues }) => {
   const [formState, setFormState] = useState(initialFormState);
-  const { handleCreateProfesor, handleUpdateProfesor } = useProfesores();
 
   useEffect(() => {
     if (isEditing) {
@@ -20,30 +19,9 @@ const ProfesorForm = ({ isEditing, initialValues }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formState);
-    isEditing ? update() : create()
+    onSubmit(formState)
     setFormState(initialFormState);
   };
-
-  const create = () => {
-    handleCreateProfesor(formState)
-      .then(resp => {
-        console.log(resp);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  const update = () => {
-    handleUpdateProfesor(formState.id, formState)
-      .then(resp => {
-        console.log(resp);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
 
   const handleChange = (e) => {
     setFormState({

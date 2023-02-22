@@ -1,37 +1,25 @@
 import { Button, Grid, TextField } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { useAsignaturas } from "../hooks/asignaturas";
 
 const initialFormState = {
   nombre: "",
   codigo: "",
 };
 
-const AsignaturaForm = ({ isEditing, initialValues }) => {
+const AsignaturaForm = ({ onSubmit, isEditing, initialValues }) => {
   const [formState, setFormState] = useState(initialFormState);
-  const { handleCreateAsignatura, handleUpdateAsignatura } = useAsignaturas();
 
   useEffect(() => {
     if (isEditing) {
-      console.log('initialValues', initialValues);
       setFormState(initialValues);
     }
   }, [isEditing, initialValues]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formState);
-    isEditing ? update() : create()
+    onSubmit(formState);
     setFormState(initialFormState);
   };
-
-  const create = () => {
-    handleCreateAsignatura(formState)
-  }
-
-  const update = () => {
-    handleUpdateAsignatura(formState.id, formState)
-  }
 
   const handleChange = (e) => {
     setFormState({

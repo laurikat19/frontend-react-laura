@@ -46,8 +46,8 @@ export const useAsignaturas = () => {
       })
   };
 
-  const handleUpdateAsignatura = (id, asignatura) => {
-    updateAsignatura(id, asignatura)
+  const handleUpdateAsignatura = (asignatura) => {
+    updateAsignatura(asignatura.id, asignatura)
       .then(() => {
         setTrigger(trigger + 1);
       })
