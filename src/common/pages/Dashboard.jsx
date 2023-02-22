@@ -23,6 +23,9 @@ import { options } from '../helpers/variables';
 import { ProfesoresList } from '../../profesores/components/ProfesoresList';
 import ProfesorForm from '../../profesores/components/ProfesorForm';
 import { ProfesoresCount } from '../../profesores/components/ProfesoresCount';
+import { AsignaturasCount } from '../../asignaturas/components/AsignaturasCount';
+import { AsignaturasList } from '../../asignaturas/components/AsignaturasList';
+import AsignaturaForm from '../../asignaturas/components/AsignaturasForm';
 
 const DashboardContent = () => {
     const [open, setOpen] = useState(true);
@@ -120,7 +123,16 @@ const DashboardContent = () => {
                                     height: 240,
                                 }}
                             >
-                                <ProfesorForm isEditing={false} initialValues={null} />
+                                {
+                                    option === 'Profesores' ?
+                                        <ProfesorForm isEditing={false} initialValues={null} />
+                                        :
+                                        option === 'Asignaturas' ?
+                                            <AsignaturaForm isEditing={false} initialValues={null} />
+                                            :
+                                            <ProfesorForm isEditing={false} initialValues={null} />
+
+                                }
                             </Paper>
                         </Grid>
 
@@ -133,13 +145,29 @@ const DashboardContent = () => {
                                     height: 240,
                                 }}
                             >
-                                <ProfesoresCount />
+                                {
+                                    option === 'Profesores' ?
+                                        <ProfesoresCount />
+                                        :
+                                        option === 'Asignaturas' ?
+                                            <AsignaturasCount />
+                                            :
+                                            <ProfesoresCount />
+                                }
                             </Paper>
                         </Grid>
 
                         <Grid item xs={12}>
                             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                <ProfesoresList />
+                                {
+                                    option === 'Profesores' ?
+                                        <ProfesoresList />
+                                        :
+                                        option === 'Asignaturas' ?
+                                            <AsignaturasList />
+                                            :
+                                            <ProfesoresList />
+                                }
                             </Paper>
                         </Grid>
                     </Grid>
