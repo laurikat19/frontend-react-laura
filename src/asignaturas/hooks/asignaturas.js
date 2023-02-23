@@ -31,7 +31,7 @@ export const useAsignaturas = () => {
         setAsignaturas(asignaturas);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   }, [trigger]);
 
@@ -42,7 +42,7 @@ export const useAsignaturas = () => {
         setTrigger(trigger + 1);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       })
   };
 
@@ -52,7 +52,7 @@ export const useAsignaturas = () => {
         setTrigger(trigger + 1);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -62,7 +62,7 @@ export const useAsignaturas = () => {
         setTrigger(trigger + 1);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   };
 

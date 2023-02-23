@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react";
 import { api } from "../../common/services/backend";
 
-const createProfesor = (profesor) => {
-  return api.post('/profesor/', profesor)
+const createClase = (clase) => {
+  return api.post('/clase/', clase)
     .then(response => response.data);
 }
 
-const readProfesores = () => {
-  return api.get('/profesor/')
+const readClases = () => {
+  return api.get('/clase/')
     .then(response => response.data);
 }
 
-const updateProfesor = (id, profesor) => {
-  return api.put(`/profesor/${id}/`, profesor)
+const updateClase = (id, clase) => {
+  return api.put(`/clase/${id}/`, clase)
     .then(response => response.data);
 }
 
-const deleteProfesor = (id) => {
-  return api.delete(`/profesor/${id}/`)
+const deleteClase = (id) => {
+  return api.delete(`/clase/${id}/`)
     .then(response => response.data);
 }
 
-export const useProfesores = () => {
-  const [profesores, setProfesores] = useState([]);
+export const useClases = () => {
+  const [clases, setClases] = useState([]);
   const [trigger, setTrigger] = useState(0);
 
   useEffect(() => {
-    readProfesores()
-      .then(profesores => {
-        setProfesores(profesores);
+    readClases()
+      .then(clases => {
+        setClases(clases);
       })
       .catch(error => {
         console.error(error);
@@ -36,8 +36,18 @@ export const useProfesores = () => {
   }, [trigger]);
 
 
-  const handleCreateProfesor = (profesor) => {
-    createProfesor(profesor)
+  const handleCreateClase = (clase) => {
+    createClase(clase)
+      .then(() => {
+        setTrigger(trigger + 1);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  };
+
+  const handleUpdateClase = (clase) => {
+    updateClase(clase.id, clase)
       .then(() => {
         setTrigger(trigger + 1);
       })
@@ -46,18 +56,8 @@ export const useProfesores = () => {
       });
   };
 
-  const handleUpdateProfesor = (id, profesor) => {
-    updateProfesor(id, profesor)
-      .then(() => {
-        setTrigger(trigger + 1);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
-
-  const handleDeleteProfesor = (id) => {
-    deleteProfesor(id)
+  const handleDeleteClase = (id) => {
+    deleteClase(id)
       .then(() => {
         setTrigger(trigger + 1);
       })
@@ -67,9 +67,9 @@ export const useProfesores = () => {
   };
 
   return {
-    profesores,
-    handleCreateProfesor,
-    handleUpdateProfesor,
-    handleDeleteProfesor
+    clases,
+    handleCreateClase,
+    handleUpdateClase,
+    handleDeleteClase
   }
 };

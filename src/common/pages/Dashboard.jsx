@@ -28,6 +28,10 @@ import { AsignaturasList } from '../../asignaturas/components/AsignaturasList';
 import AsignaturaForm from '../../asignaturas/components/AsignaturasForm';
 import { useAsignaturas } from '../../asignaturas/hooks/asignaturas';
 import { useProfesores } from '../../profesores/hooks/profesores';
+import { useClases } from '../../clases/hooks/clases';
+import { ClasesCount } from '../../clases/components/ClasesCount';
+import { ClasesList } from '../../clases/components/ClasesList';
+import ClaseForm from '../../clases/components/ClasesForm';
 
 const DashboardContent = () => {
     const [open, setOpen] = useState(true);
@@ -35,6 +39,7 @@ const DashboardContent = () => {
 
     const { asignaturas, handleCreateAsignatura, handleUpdateAsignatura, handleDeleteAsignatura } = useAsignaturas();
     const { profesores, handleCreateProfesor, handleUpdateProfesor, handleDeleteProfesor } = useProfesores();
+    const { clases, handleCreateClase, handleUpdateClase, handleDeleteClase } = useClases();
 
 
     const toggleDrawer = () => {
@@ -136,7 +141,7 @@ const DashboardContent = () => {
                                         option === 'Asignaturas' ?
                                             <AsignaturaForm onSubmit={handleCreateAsignatura} isEditing={false} initialValues={null} />
                                             :
-                                            <ProfesorForm isEditing={false} initialValues={null} />
+                                            <ClaseForm onSubmit={handleCreateClase} asignaturas={asignaturas} profesores={profesores} isEditing={false} initialValues={null} />
 
                                 }
                             </Paper>
@@ -158,7 +163,7 @@ const DashboardContent = () => {
                                         option === 'Asignaturas' ?
                                             <AsignaturasCount asignaturas={asignaturas} />
                                             :
-                                            <ProfesoresCount />
+                                            <ClasesCount clases={clases} />
                                 }
                             </Paper>
                         </Grid>
@@ -180,7 +185,13 @@ const DashboardContent = () => {
                                                 handleDeleteAsignatura={handleDeleteAsignatura}
                                             />
                                             :
-                                            <ProfesoresList />
+                                            <ClasesList
+                                                clases={clases}
+                                                asignaturas={asignaturas}
+                                                profesores={profesores}
+                                                handleUpdateClase={handleUpdateClase}
+                                                handleDeleteClase={handleDeleteClase}
+                                            />
                                 }
                             </Paper>
                         </Grid>
