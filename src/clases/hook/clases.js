@@ -12,7 +12,7 @@ const readClases = () => {
 }
 
 const updateClase = (id, clase) => {
-  return api.put(`/clase/${id}/`, clase)
+  return api.put(`/asignatura/${id}/`, clase)
     .then(response => response.data);
 }
 
@@ -67,7 +67,7 @@ export const useClases = () => {
   };
 
   return {
-    clase,
+    asignaturas,
     handleCreateClase,
     handleUpdateClase,
     handleDeleteClase
