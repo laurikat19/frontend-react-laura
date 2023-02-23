@@ -15,7 +15,7 @@ import { useClases } from '../hooks/clases';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import moment from 'moment';
-import ClaseForm from './ClaseForm';
+import AsignaturaForm from './ClasesForm';
 import { useState } from 'react';
 
 export const ClasesList = ({clases, handleUpdateClases, handleDeleteClases}) => {
@@ -34,7 +34,7 @@ export const ClasesList = ({clases, handleUpdateClases, handleDeleteClases}) => 
     return (
         <>
             <Grid container spacing={2}>
-                {clases.map((clase) => (
+                {asignaturas.map((clase) => (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={clase.id}>
                         <Card>
                             <Grid container>
