@@ -11,8 +11,8 @@ const readAsignaturas = () => {
     .then(response => response.data);
 }
 
-const updateAsignatura = (id, asignatura) => {
-  return api.put(`/asignatura/${id}/`, asignatura)
+const updateAsignatura = (asignatura) => {
+  return api.put(`/asignatura/${asignatura.id}/`, asignatura)
     .then(response => response.data);
 }
 
@@ -47,7 +47,7 @@ export const useAsignaturas = () => {
   };
 
   const handleUpdateAsignatura = (asignatura) => {
-    updateAsignatura(asignatura.id, asignatura)
+    updateAsignatura(asignatura)
       .then(() => {
         setTrigger(trigger + 1);
       })

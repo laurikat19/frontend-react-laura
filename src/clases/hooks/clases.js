@@ -11,8 +11,8 @@ const readClases = () => {
     .then(response => response.data);
 }
 
-const updateClase = (id, clase) => {
-  return api.put(`/clase/${id}/`, clase)
+const updateClase = (clase) => {
+  return api.put(`/clase/${clase.id}/`, clase)
     .then(response => response.data);
 }
 
@@ -47,7 +47,7 @@ export const useClases = () => {
   };
 
   const handleUpdateClase = (clase) => {
-    updateClase(clase.id, clase)
+    updateClase(clase)
       .then(() => {
         setTrigger(trigger + 1);
       })

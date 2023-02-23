@@ -11,8 +11,8 @@ const readProfesores = () => {
     .then(response => response.data);
 }
 
-const updateProfesor = (id, profesor) => {
-  return api.put(`/profesor/${id}/`, profesor)
+const updateProfesor = (profesor) => {
+  return api.put(`/profesor/${profesor.id}/`, profesor)
     .then(response => response.data);
 }
 
@@ -46,8 +46,8 @@ export const useProfesores = () => {
       });
   };
 
-  const handleUpdateProfesor = (id, profesor) => {
-    updateProfesor(id, profesor)
+  const handleUpdateProfesor = (profesor) => {
+    updateProfesor(profesor)
       .then(() => {
         setTrigger(trigger + 1);
       })

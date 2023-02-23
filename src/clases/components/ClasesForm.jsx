@@ -14,6 +14,7 @@ const ClaseForm = ({ onSubmit, asignaturas, profesores, isEditing, initialValues
   useEffect(() => {
     if (isEditing) {
       setFormState({
+        id: initialValues.id,
         salon: initialValues.salon,
         horario: initialValues.horario,
         profesor: profesores.find((profesor) => profesor.id === initialValues.profesor),
